@@ -17,12 +17,17 @@
     <script>function handler() {
 
         return {
-          fields: [],
+          fields: [{
+              txt1: 0,
+              txt2: 0
+           }],
+          total: 0,
           addNewField() {
               this.fields.push({
                   
                 
                });
+             total= parseInt(fields.a)  + total
             },
             removeField(index) {
                this.fields.splice(index, 1);
@@ -52,9 +57,9 @@
               <td x-text="index + 1"></td>
                <td><input x-model="field.txt3" type="text" name="txt1[]" class="form-control"></td>
                
-              <td><input x-model="field.txt1" type="number" name="txt1[]" class="form-control"></td>
-              <td><input x-model="field.txt2" type="number" name="txt2[]" class="form-control"></td>
-               <td><P x-text="field.txt2 * field.txt1  " x-model="field.a"></p></td>
+              <td><input x-model=" field.txt1 " type="number" name="txt1[]" class="form-control"></td>
+              <td><input x-model=" field.txt2" type="number" name="txt2[]" class="form-control"></td>
+               <td><P x-text="(field.txt2 && field.txt1)? field.txt2 * field.txt1: 0  " x-model="field.a"></p></td>
                <td><button type="button" class="btn btn-danger btn-small" @click="removeField(index)">&times;</button></td>
             </tr>
            </template>
@@ -67,7 +72,7 @@
             </tr>
           </tfoot>
         </table>
-        <!-- <p colspan="3" x-text="fields.a.map(el=> 0+el)">0.00</p> -->
+        <p colspan="3" x-text=" 'total:' + fields.reduce((i,item)=>i + (item.txt2* item.txt1), 0)"></p>
           <!-- <div x-text=" 'total:'  "></div> -->
         </div>
 
